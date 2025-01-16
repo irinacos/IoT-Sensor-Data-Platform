@@ -12,8 +12,11 @@ diverse topicuri
 analiza datelor
 
 ## Rularea codului
-"./run.sh" va construi imaginea adaptorului si va initializa Swarm, dupa care va 
-implementa stack-ul de servicii descris mai sus
+```
+./run.sh
+```
+Comanda va construi imaginea adaptorului si va initializa Swarm, dupa care va 
+implementa stack-ul de servicii descris mai sus.
 
 ## Adaptorul:
 - se aboneaza la toate mesajele trimise (prin folosirea unui wildcard)
