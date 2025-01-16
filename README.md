@@ -13,6 +13,8 @@ analiza datelor
 
 ## Rularea codului
 ```
+git clone https://github.com/irinacos/IoT-Sensor-Data-Platform.git
+cd IoT-Sensor-Data-Platform
 ./run.sh
 ```
 Comanda va construi imaginea adaptorului si va initializa Swarm, dupa care va 
