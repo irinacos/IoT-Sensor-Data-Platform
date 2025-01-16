@@ -9,7 +9,7 @@ MQTT primite de la senzori si le stocheaza in baza de date
 - Broker MQTT (Eclipse Mosquitto): primeste date de la senzori si le publica pe 
 diverse topicuri
 - Platforma de vizualizare (Grafana): dashboard-uri personalizabile pentru 
-analiza datelo
+analiza datelor
 
 ## Rularea codului
 "./run.sh" va construi imaginea adaptorului si va initializa Swarm, dupa care va 
