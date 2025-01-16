@@ -1,4 +1,4 @@
-# Tema 3 - Platformă IoT folosind Microservicii
+# Platformă IoT folosind Microservicii
 Acest proiect implementeaza un sistem IoT pentru colectarea si stocarea datelor 
 senzorilor utilizand microservicii orchestrate prin Docker Swarm
 
