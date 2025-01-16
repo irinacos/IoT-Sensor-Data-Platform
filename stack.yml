@@ -1,0 +1,64 @@
+version: '3.8'
+
+services:
+  mqtt_broker:
+    image: eclipse-mosquitto:latest
+    ports:
+      - "1883:1883"
+    volumes:
+      - mosquitto_data:/mosquitto/data
+      - mosquitto_config:/mosquitto/config
+      - mosquitto_log:/mosquitto/log
+      - ./mosquitto_config/mosquitto.conf:/mosquitto/config/mosquitto.conf
+    networks:
+      - mqtt_network
+
+  influxdb:
+    image: influxdb:1.8
+    volumes:
+      - influxdb_data:/var/lib/influxdb
+    networks:
+      - db_network
+    environment:
+      - INFLUXDB_DB=iot_data
+    command: influxd
+    
+  adapter:
+    image: adapter_image:latest
+    environment:
+      - DEBUG_DATA_FLOW=true
+      - INFLUXDB_URL=http://influxdb:8086
+      - INFLUXDB_DB=iot_data
+      - BROKER_ADDRESS=mqtt_broker
+      - BROKER_PORT=1883
+    depends_on:
+      - mqtt_broker
+      - influxdb
+    networks:
+      - mqtt_network
+      - db_network
+
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - "80:3000"
+    volumes:
+      - grafana_data:/var/lib/grafana
+    environment:
+      - GF_SECURITY_ADMIN_USER=asistent
+      - GF_SECURITY_ADMIN_PASSWORD=grafanaSCD2024
+    networks:
+      - db_network
+
+volumes:
+  mosquitto_data:
+  mosquitto_config:
+  mosquitto_log:
+  influxdb_data:
+  grafana_data:
+
+networks:
+  mqtt_network:
+    driver: overlay
+  db_network:
+    driver: overlay
